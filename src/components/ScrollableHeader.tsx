@@ -64,8 +64,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         paddingTop: HEADER_MAX_HEIGHT + 30,
-        paddingLeft: 30,
-        paddingRight: 30,
     },
     header: {
         position: 'absolute',

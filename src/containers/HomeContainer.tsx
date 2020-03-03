@@ -23,7 +23,8 @@ const HomeContainer = () => {
 }
 
 const Sample = styled.View`
-    
+    padding-left: 20px;
+    padding-right: 20px;
 `
 
 export default HomeContainer
