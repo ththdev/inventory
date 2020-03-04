@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Feather'
 
 interface Props {
     title: string,
+    addButton?: boolean | false
 }
 
 const HEADER_MIN_HEIGHT = 100
@@ -19,7 +20,7 @@ const SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 const FONT_MIN_SIZE = 24
 const FONT_MAX_SIZE = 32
 
-const ScrollableHeader: FunctionComponent<Props> = ({ title, children }) => {
+const ScrollableHeader: FunctionComponent<Props> = ({ title, addButton, children }) => {
     const [offsetY, setOffsetY] = useState(new Animated.Value(0))
 
     const headerHeight = offsetY.interpolate({
@@ -39,7 +40,6 @@ const ScrollableHeader: FunctionComponent<Props> = ({ title, children }) => {
             <ScrollView
                 style={styles.scrollView}
                 scrollEventThrottle={16}
-                showsVerticalScrollIndicator={false}
                 contentInset={{ bottom: 200 }}
                 onScroll={Animated.event(
                     [{nativeEvent: {contentOffset: {y: offsetY}}}]
@@ -51,9 +51,11 @@ const ScrollableHeader: FunctionComponent<Props> = ({ title, children }) => {
                 <Animated.Text style={[styles.title, {fontSize: fontSize}]}>
                     {title}
                 </Animated.Text>
-                <TouchableOpacity style={styles.add}>
-                    <Icon name="plus" size={24} />
-                </TouchableOpacity>
+                {addButton &&
+                    <TouchableOpacity style={styles.add}>
+                        <Icon name="plus" size={24} />
+                    </TouchableOpacity> 
+                }
             </Animated.View>
         </>
     )
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         paddingTop: HEADER_MAX_HEIGHT + 30,
+        paddingLeft: 30,
     },
     header: {
         position: 'absolute',

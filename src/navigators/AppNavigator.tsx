@@ -2,12 +2,12 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 
 // Navigators
-import HomeStack from './HomeStack'
+import BottomTabNavigator from './BottomTabNavigator'
 
 function AppNavigator() {
     return (
         <NavigationContainer>
-            <HomeStack />
+            <BottomTabNavigator />
         </NavigationContainer>
     )
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import {
     FlatList,
-    YellowBox
+    YellowBox,
+    Dimensions,
+    View
 } from 'react-native'
 import styled from 'styled-components/native'
 import data from '../data/collections'
@@ -10,46 +12,73 @@ YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
 ])
 
+const { width } = Dimensions.get('window')
+
 const Collections = () => {
+    console.log(width)
     return (
-        <FlatList
-            data={data}
-            numColumns={2}
-            renderItem={({item}) => {
-                return (
-                    <Collection>
-                        <MainImage source={{uri: item.imageUrl}} />
-                        <Title>{item.name}</Title>
-                    </Collection>
-                )
-            }}
-            keyExtractor={item => item.name}
-        />
+        <Collection>
+            <FlatList
+                data={data[0].items}
+                renderItem={({ item, index }) => (
+                    <Item>
+                        <ItemImage source={{ uri: item.images[0] }} />
+                        <Details>
+                            <View>
+                                <Name>{ item.name }</Name>
+                                <Price>{ item.price }</Price>
+                            </View>
+                            <Status>{ item.status }</Status>
+                        </Details>
+                    </Item>
+                )}
+                keyExtractor={item => item.name}
+            />
+        </Collection>
     )
 }
 
-const Collection = styled.TouchableOpacity`
-    flex: 1;
-    border-width: 10px;
-    border-color: white;
-    border-radius: 5px;
+const Collection = styled.View`
+    width: ${width - 60}px;
+    height: 500px;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 50px;
 `
 
-const MainImage = styled.Image`
-    border-radius: 5px;   
-    height: ${315/2 - 10}px;
+const Item = styled.View`
+    margin-bottom: 20px;
+    flex-direction: row;
 `
 
-const Title = styled.Text`
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
+const ItemImage = styled.Image`
+    width: 60px;
+    height: 60px;
 `
 
-const ItemSperator = styled.View`
-    height: ${315/2}px;
-    width: 5px;
-    background: red;
+const Details = styled.View`
+    margin-left: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+`
+
+const Name = styled.Text`
+    font-size: 14px;
+    margin-bottom: 5px;
+`
+
+const Price = styled.Text`
+    font-size: 12px;
+`
+
+const Status = styled.Text`
+    font-size: 14px;
+    color: #219653;
+    text-align: right;
 `
 
 export default Collections
