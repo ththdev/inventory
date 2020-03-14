@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import styled from 'styled-components/native'
 import ScrollableHeader from '../components/ScrollableHeader'
 import Collections from '../components/Collections'
 
 const CollectionContainer = () => {
     return (
-        <ScrollableHeader title="Collections" addButton={true}>
+        <ScrollableHeader title="Collections">
             <Collections />
         </ScrollableHeader>
     )

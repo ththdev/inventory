@@ -15,34 +15,19 @@ YellowBox.ignoreWarnings([
 const { width } = Dimensions.get('window')
 
 const Collections = () => {
-    console.log(width)
+    
     return (
         <Collection>
-            <FlatList
-                data={data[0].items}
-                renderItem={({ item, index }) => (
-                    <Item>
-                        <ItemImage source={{ uri: item.images[0] }} />
-                        <Details>
-                            <View>
-                                <Name>{ item.name }</Name>
-                                <Price>{ item.price }</Price>
-                            </View>
-                            <Status>{ item.status }</Status>
-                        </Details>
-                    </Item>
-                )}
-                keyExtractor={item => item.name}
-            />
+            
         </Collection>
     )
 }
 
 const Collection = styled.View`
-    width: ${width - 60}px;
+    width: ${width - 40}px;
     height: 500px;
     border-radius: 7px;
-    background-color: white;
+    background-color: gray;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     padding-left: 20px;
     padding-right: 20px;
